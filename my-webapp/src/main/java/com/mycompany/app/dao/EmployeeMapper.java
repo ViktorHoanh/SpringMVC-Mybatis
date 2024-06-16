@@ -11,8 +11,9 @@ import java.util.List;
 public class EmployeeMapper {
     public List<Employee> getAllEmployees(){
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        @SuppressWarnings("unchecked")
-        List<Employee> employeesList = session.selectList("getAllEmployees");
+
+        Employee_mapper mapper = session.getMapper(Employee_mapper.class);
+        List<Employee> employeesList = mapper.getAll();
         session.commit();
         session.close();
         return employeesList;
